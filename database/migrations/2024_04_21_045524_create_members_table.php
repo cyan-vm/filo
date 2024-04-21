@@ -21,6 +21,7 @@ class CreateMembersTable extends Migration
             $table->string('maternalName', 45)->nullable();
             $table->tinyInteger('sex');
             $table->string('email', 45);
+            $table->string('roles', 45);
             $table->string('password', 64)->nullable();
             $table->string('profile_image', 100)->nullable();
             // $table->integer('rol_idrol')->unsigned();
