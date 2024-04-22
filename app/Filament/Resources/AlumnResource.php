@@ -44,11 +44,12 @@ class AlumnResource extends Resource
         return $table
             ->columns([
             //
+            TextColumn::make('user.name'),
             TextColumn::make('enrollment'),
             TextColumn::make('grade'),
             TextColumn::make('group'),
             // Add text column for user_id
-            TextColumn::make('user.name')
+            
             ])
             ->filters([
                 //

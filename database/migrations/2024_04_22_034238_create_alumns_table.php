@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('grade', 20);
             $table->char('group', 1);
             $table->unsignedBigInteger('user_id'); // Rename the foreign key column
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
