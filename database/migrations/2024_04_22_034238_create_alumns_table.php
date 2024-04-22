@@ -8,20 +8,21 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
-    public function up(): void
+     */ 
+    public function up()
     {
-        Schema::create('alumns', function (Blueprint $table) {
-            $table->id();
+        Schema::create('alumn', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('enrollment', 10);
+            $table->string('grade', 20);
+            $table->char('group', 1);
+            $table->unsignedBigInteger('user_id'); // Rename the foreign key column
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('alumns');
+        Schema::dropIfExists('alumn');
     }
 };

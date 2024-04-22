@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\TextColumn;
+
 
 class AlumnResource extends Resource
 {
@@ -23,7 +25,17 @@ class AlumnResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // Campos para alumnos
+                Forms\Components\TextInput::make('enrollment')
+                ->label('Enrollment')
+                ->required(),
+                Forms\Components\TextInput::make('grade')
+                ->label('Grade')
+                ->required(),
+                Forms\Components\TextInput::make('group')
+                ->label('Grupo')
+                ->required(),
+                Forms\Components\Select::make('user_id')->relationship('user', 'name')->searchable()->preload()->required()
             ]);
     }
 
@@ -31,7 +43,12 @@ class AlumnResource extends Resource
     {
         return $table
             ->columns([
-                //
+            //
+            TextColumn::make('enrollment'),
+            TextColumn::make('grade'),
+            TextColumn::make('group'),
+            // Add text column for user_id
+            TextColumn::make('user.name')
             ])
             ->filters([
                 //
