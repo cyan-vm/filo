@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('program', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Auto-incrementing primary key
-            $table->string('program', 45); // VARCHAR(45) NOT NULL
-            $table->string('acronym', 45)->nullable(); // VARCHAR(45) NULL
-            $table->string('logo', 45)->nullable(); // VARCHAR(45) NULL
-            $table->timestamps(); // Adds created_at and updated_at columns
+            $table->id(); // This will create an unsigned bigint column by default
+            $table->string('program', 45);
+            $table->string('acronym', 45)->nullable();
+            $table->string('logo', 45)->nullable();
+            $table->timestamps();
         });
     }
 
