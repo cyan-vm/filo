@@ -9,11 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('periods', function (Blueprint $table) {
-            $table->id();
-            
+        Schema::create('period', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('period_name', 45);
+            $table->string('acronym', 45)->nullable();
+            $table->date('startDate');
+            $table->date('endDate');
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('period');
     }
 };
