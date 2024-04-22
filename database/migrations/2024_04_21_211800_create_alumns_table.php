@@ -8,29 +8,24 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('alumn', function (Blueprint $table) {
-            $table->id('idalumn');
-            $table->string('enrollment', 10);
-            $table->string('grade', 20);
-            $table->char('group', 1);
-            $table->unsignedBigInteger('user_iduser');
+            $table->increments('IdAlumno');
+            $table->string('matricula', 10);
+            $table->string('grado', 20);
+            $table->char('grupo', 1);
+            $table->unsignedInteger('IdUsers');
+            // $table->foreign('IdUsers')->references('IdUsers')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
-
-            // $table->foreign('user_iduser')->references('iduser')->on('user')->onDelete('NO ACTION')->onUpdate('NO ACTION');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('alumn');
     }
