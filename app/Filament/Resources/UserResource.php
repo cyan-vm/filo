@@ -1,5 +1,7 @@
 <?php
 
+// 
+// TODO: Hide password on edit
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
@@ -20,12 +22,13 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([Forms\Components\TextInput::make('name')->label('Name'),
+            ->schema([
+            Forms\Components\TextInput::make('name')->label('Name'),
             Forms\Components\TextInput::make('lastName')->label('Last Name'),
             Forms\Components\TextInput::make('maternalName')->label('Maternal Name')->nullable(),
             Forms\Components\Select::make('sex')->label('Sex')->options([
@@ -33,8 +36,8 @@ class UserResource extends Resource
                 '2' => 'Female',
             ]),
             Forms\Components\TextInput::make('email')->label('Email'),
-            Select::make('roles')->multiple()->relationship('roles', 'name'),
-            Forms\Components\TextInput::make('password')->label('Password')->password(),
+            Select::make('role')->options(User::ROLES)->required()->default(User::ROLE_DEFAULT),
+            Forms\Components\TextInput::make('password')->label('Password')->password()->hiddenOn('edit')->required(),
             Forms\Components\TextInput::make('profile_image')->label('Profile Image')->nullable(),
             // TextInput::make('name')->required(),
             // TextInput::make('email')->required(),
@@ -50,7 +53,7 @@ class UserResource extends Resource
                 //
                 TextColumn::make('name'),
                 TextColumn::make('email'),
-                TextColumn::make('roles.name'),
+                TextColumn::make('role'),
                     
             ])
             ->filters([
@@ -81,4 +84,5 @@ class UserResource extends Resource
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
+    
 }

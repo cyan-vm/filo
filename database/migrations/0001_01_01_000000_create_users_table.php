@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('maternalName', 45)->nullable();
             $table->tinyInteger('sex')->nullable();
             $table->string('email')->unique();
-            $table->string('roles', 45)->nullable();
+            $table->string('role', 45)->nullable()->default('Admin');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_image', 100)->nullable();
